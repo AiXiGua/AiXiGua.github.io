@@ -1,6 +1,5 @@
 ---
-typora-copy-images-to: images
-title: "Single-Shot Refinement Neural Network for Object Detection"
+title: "Polyhedral Conic Classifiers for Visual Object Detection and Classification"
 last_modified_at: 2018-03-08T21:28:04-22:00:00
 categories:
   - Object Detection

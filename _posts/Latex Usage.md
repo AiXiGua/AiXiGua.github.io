@@ -1,5 +1,4 @@
 ---
-typora-copy-images-to: images
 title: "Latex Usage"
 last_modified_at: 2018-03-08T21:28:04-22:00:00
 categories:
