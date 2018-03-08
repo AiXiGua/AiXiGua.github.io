@@ -47,7 +47,7 @@ tags:
 
 ##网络结构
 
-![图1：RefineDet的架构， 为了更好的可视化，我们只显示用于检测的层。 灰绿色平行四边形表示与不同特征层相关联的细化锚， 星星代表refined anchor boxes的中心，在图像上不规则分布。](assets/images/1520242669895.png)
+![图1：RefineDet的架构， 为了更好的可视化，我们只显示用于检测的层。 灰绿色平行四边形表示与不同特征层相关联的细化锚， 星星代表refined anchor boxes的中心，在图像上不规则分布。]({{ site.url }}{{ site.baseurl }}/assets/images/1520242669895.png)
 
 图1：RefineDet的架构， 为了更好的可视化，我们只显示用于检测的层。 灰绿色平行四边形表示与不同特征层相关联的细化锚， 星星代表refined anchor boxes的中心，在图像上不规则分布。
 
@@ -62,7 +62,7 @@ tags:
 
 为了在ARM和ODM之间建立链接，我们引入了TCB，将来自ARM的不同层的特征转换为ODM所需的形式，以便ODM可以共享来自ARM的特征。 值得注意的是，在ARM中，我们只在与锚点关联的特征图上使用TCB。 TCB的另一个功能是通过将高层特征添加到传输的特征中来集成大规模上下文，以提高检测精度。为了匹配它们之间的尺寸，我们使用反卷积操作来放大高层特征图并按元素对它们进行求和。 然后，我们在求和之后添加卷积层以确保特征的可区分性。 TCB的结构如图2所示。
 
-![TCB overview](assets/images/1520243299571.png)
+![TCB overview]({{ site.url }}{{ site.baseurl }}/assets/images/1520243299571.png)
 
 **Two-Step Cascaded Regression**
 
@@ -99,9 +99,6 @@ RefineDet的损失函数由两部分组成，即ARM中的损失和ODM中的损�
 
 
 $$\begin{align}\mathcal L\left(\left\{ p_i \right\},\left\{ x_i \right\},\left\{ c_i \right\},\left\{ t_i \right\} \right)=\frac{1}{N_{arm}}\left( \sum_i\mathcal L_b\left({p_i,\left[{l_i^*\geq 1}\right]}\right)+ \sum_i\left[{l_i^*\geq 1}\right]\mathcal L_r\left({x_i,g_i^*}\right)\right)\\+\frac{1}{N_{odm}}\left( \sum_i\mathcal L_m\left({c_i,l_i^*}\right)+ \sum_i\left[{l_i^*\geq 1}\right]\mathcal L_r\left({t_i,g_i^*}\right)\right)\end{align}$$
-
-
-
 其中$i$ 是指一个mini-batch中anchor的索引，$l_i^*$ 是anchor $i$ 的ground truth类标签，$g_i^*$ 是anchor $i$ 的ground truth位置与大小。$p_i$ 和$x_i$ 是anchor $i$ 是对象的预测置信度得分以及在ARM中anchor $i$ 的精确坐标。$c_i$ 和$t_i$ 是anchor $i$ 是预测对象类别以及在ODM中bbox的坐标。$N_{arm}$ 和$N_{odm}$ 分别是在ARM和ODM中的正锚的数量。二元分类损失函数$\mathcal L_b$ 是二类（对象 vs. 非对象）cross-entropy/log 损失函数，而多类分类损失函数$\mathcal L_m$ 是基于多类别置信度的softmax损失函数。与Fast R-CNN类似，我们使用smooth L1 loss作为回归损失$L_r$ 。艾弗森（Iverson）括号指示器函数$\left[{l_i^*\geq 1}\right]$ 在条件为真是输出1，即$l_i^*\geq1$ (anchor不是负的)，否则输出0。因此$\left[{l_i^*\geq 1}\right]\mathcal L_r$ 表明回归损失忽略了负锚。 值得注意的是，如果$N_{arm}=0$ ，我们令$\mathcal L_b\left({p_i,\left[{l_i^*\geq 1}\right]}\right)=0$ 以及$\mathcal L_r\left({x_i,g_i^*}\right)=0$ ;相应的如果$N_{odm}=0$ ，我们令$\mathcal L_m\left({c_i,\left[{l_i^*\geq 1}\right]}\right)=0$ 以及$\mathcal L_r\left({t_i,g_i^*}\right)=0$ 。
 **优化 Optimization**
 如上所述，RefineDet使用的骨干网络（即VGG-16和ResNet-101）在ILSVRC CLS-LOC数据集上预训练[37]。 对于基于VGG-16的RefineDet，我们使用“xavier”方法[17]随机初始化其两个额外附加卷积层（即conv6_1和conv6_2）的参数；对于基于ResNet-101的RefineDet，从标准偏差为0.01的零均值高斯分布中绘制额外残差块的参数 （即res6）。 我们在训练中将默认batch大小设置为32。然后使用SGD以0.9的动量和0.0005的权重衰减对整个网络进行微调fine-tune。 我们将初始学习率设置为$10^{-3}$，并针对不同的数据集使用稍微不同的学习率衰减策略，稍后将对此进行详细描述。
@@ -112,17 +109,13 @@ $$\begin{align}\mathcal L\left(\left\{ p_i \right\},\left\{ x_i \right\},\left\{
 **PASCAL VOC 2007**
 所有模型都在VOC 2007和VOC 2012训练集进行训练，并在VOC 2007测试集上进行测试。 前80k次迭代的学习率设置为$10^{-3}$，额外两个的20k次迭代分别将其衰减到$10^{-4}$和$10^{-5}$。 训练时使用默认batch大小为32，并且仅使用VGG-16作为PASCAL VOC数据集上所有实验的骨干网络，包括VOC 2007和VOC 2012。
 我们比较了RefineDet和表1中state-of-the-art的探测器。对于低维度的输入（即320$*$320），RefineDet可达到80.0％的mAP（无附加功能），这是第一种使用这种小尺寸输入图像达到80％mAP的方法，比几个当前的方法要好得多。通过使用更大的输入尺寸512$*$512，RefineDet达到81.8％的mAP，超过了所有的单阶段方法，例如RON384 [24]，SSD513 [13]，DSSD513 [13]等。与两阶段方法相比，RefineDet512的表现要好于其中的大多数，除了CoupleNet [54]，其基于ResNet-101并且使用了比我们的RefineDet512更大的输入尺寸（即1000$*$600）。正如[21]指出的那样，输入大小会显着影响检测精度。原因是高分辨率输入使检测器能够清楚地“看到”小物体，以增加检测成功率。为了减少输入大小对公平比较的影响，我们使用多尺度测试策略来评估RefineDet，实现83.1％（RefineDet320 +）和83.8％（RefineDet512 +）的mAP，大幅超过目前最先进的方法。
-
-![1520243501036](assets/images/1520243501036.png)
-
+![1520243501036]({{ site.url }}{{ site.baseurl }}/assets/images/1520243501036.png)
 **1. 运行时间**
-
 在表1的第五列中提供了RefineDet和state-of-the-art方法在NVIDIA Titan X，CUDA 8.0和cuDNN v6的机器上，batch大小为1时的推断速度。如表1所示，我们发现RefineDet在输入尺寸为320$*$320和512$*$512时，分别以24.8ms（40.3 FPS）和41.5ms（24.1 FPS）的速度处理图像。据我们所知，RefineDet是第一个在PASCAL VOC 2007上实现检测精度高于80％mAP的实时方法。与SSD，RON，DSSD和DSOD相比，RefineDet可以在特征图上关联更少的锚点框（SSD512关联24564个锚定框vs.RefineDet512关联16320个锚定框）。然而，RefineDet仍然以高效率实现高精度，主要得益于两个互连模块的设计（即两步回归），这使RefineDet能够适应对象的不同尺度和长宽比。同时，只有YOLO和SSD300$^*$比我们的RefineDet320稍快，但它们的准确度比我们的差16.6％和2.5％。总之，RefineDet在精度和速度之间实现了最佳平衡。
 **2. 消融实验**
 为了论证RefineDet中不同组件的有效性，我们构建了四个变体，并在VOC 2007上对它们进行评估，如表3所示。具体来说，为了公平比较，我们在评估中使用相同的参数设置和输入大小（320$*$320）。 所有模型都在VOC 2007和VOC 2012训练集上进行训练，并在VOC 2007测试集上进行测试。
 
-![1520243694234](assets/images/1520243694234.png)
-
+![1520243694234]({{ site.url }}{{ site.baseurl }}/assets/images/1520243694234.png)
 - **Negative Anchor Filtering**
 
 为了论证负锚过滤的有效性，在训练和测试中，我们把锚点判断为负的置信度阈值$\theta$均设置为1.0。此时所有细化锚点都将被发送到ODM进行检测。 RefineDet的其他部分保持不变。 去除负锚过滤导致mAP下降0.5％（即80.0％ vs. 79.5％）。原因在于这些良好分类的负锚大多会在训练过程中被滤除，从而在一定程度上解决了类别失衡问题。
@@ -139,27 +132,14 @@ $$\begin{align}\mathcal L\left(\left\{ p_i \right\},\left\{ x_i \right\},\left\{
 
 > 省略精度说明
 
-![1520243501036](assets/images/1520243501036.png)
-
+![1520243501036]({{ site.url }}{{ site.baseurl }}/assets/images/1520243501036.png)
 **MS COCO**
-
 > 省略精度说明
-
 另外，RetinaNet800的主要贡献：焦点损失focal loss，可与我们的方法相辅相成。 我们相信它可以在RefineNet中使用以进一步提高性能。
-
-![1520243660055](assets/images/1520243660055.png)
-
+![1520243660055]({{ site.url }}{{ site.baseurl }}/assets/images/1520243660055.png)
 **From MS COCO to PASCAL VOC**
-
 我们研究了如何用MS COCO数据集帮助提升在PASCAL VOC上的检测精度。由于PASCAL VOC中的对象类别是MS COCO的子集，因此我们通过对参数进行二次抽样subsampling，来对在MS COCO预训练的检测模型直接进行微调fine-tune，在VOC 2007测试集上达到了84.0％ mAP（RefineDet320）和85.2％ mAP（RefineDet512），在VOC 2012测试集上达到了82.7％ mAP（RefineDet320）和85.0％ mAP（RefineDet512），如表4所示。在使用多尺度测试后，检测精度分别提高到85.6％，85.8％，86.0％和86.8％。
-
 如表4所示，使用MS COCO和PASCAL VOC的训练数据，我们的RefineDet获得了VOC 2007和VOC 2012的最高mAP分数。最重要的是，我们基于VGG-16的单一模型RefineNet512+在VOC 2012排行榜排名前五位（见[9]），这是所有一阶段方法中最准确的。其他实现更好结果的两阶段方法是基于更深的网络（例如，ResNet-101 [19]和ResNeXt-101 [49]）或者使用了集成机制。
-
-![1520243755921](assets/images/1520243755921.png)
-
+![1520243755921]({{ site.url }}{{ site.baseurl }}/assets/images/1520243755921.png)
 ## 总结
-
 在本文中，我们提出了一个基于单发细化神经网络的检测器，它由两个互连的模块组成，即ARM和ODM。 ARM旨在过滤出负锚以减少分类器的搜索空间，并粗略地调整锚的位置和大小，以便为后续的回归器提供更好的初始化，而ODM则将前面ARM细化的锚作为输入，回归出准确的物体位置和大小，并预测相应的多类别标签。整个网络以端到端的方式按多任务损失进行训练。我们在PASCAL VOC 2007，PASCAL VOC 2012和MS COCO数据集上进行了多次实验，以证明RefineDet能够高效地达到state-of-the-art的检测精度。未来，我们计划使用RefineDet来检测其他特定类型的物体，例如行人，车辆和人脸，并在RefineDet中引入注意机制以进一步提高性能。
-
-
-
