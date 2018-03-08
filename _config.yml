@@ -9,7 +9,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "zh-CHS"
-title                    : "Who's bog"
+title                    : "Who's blog"
 title_separator          : "-"
 name                     : "LinHu"
 description              : "A blog belong to Linhu."
