@@ -11,6 +11,4 @@ main:
   # - title: "Sitemap"
   #   url: /sitemap/
   - title: "test"
-    url: test/
-  - title: "docs"
-    url: docs/
+    url: test
