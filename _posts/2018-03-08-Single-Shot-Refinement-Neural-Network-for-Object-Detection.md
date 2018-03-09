@@ -2,6 +2,7 @@
 author: linhu
 title: "Single-Shot Refinement Neural Network for Object Detection"
 comments: true
+classes: wide
 date: 2018-03-08 17:42:32+00:00
 categories:
   - Object Detection
