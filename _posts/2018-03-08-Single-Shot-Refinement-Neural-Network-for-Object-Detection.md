@@ -99,7 +99,9 @@ RefineDet的损失函数由两部分组成，即ARM中的损失和ODM中的损�
 
 $$\begin{align}\mathcal L\left(\left\{ p_i \right\},\left\{ x_i \right\},\left\{ c_i \right\},\left\{ t_i \right\} \right)=\frac{1}{N_{arm}}\left( \sum_i\mathcal L_b\left({p_i,\left[{l_i^*\geq 1}\right]}\right)+ \sum_i\left[{l_i^*\geq 1}\right]\mathcal L_r\left({x_i,g_i^*}\right)\right)\\+\frac{1}{N_{odm}}\left( \sum_i\mathcal L_m\left({c_i,l_i^*}\right)+ \sum_i\left[{l_i^*\geq 1}\right]\mathcal L_r\left({t_i,g_i^*}\right)\right)\end{align}$$
 
+```
 其中 $i$ 是指一个mini-batch中anchor的索引，$l_i^*$ 是anchor $i$ 的ground truth类标签，$g_i^*$ 是anchor $i$ 的ground truth位置与大小。$p_i$ 和$x_i$ 是anchor $i$ 是对象的预测置信度得分以及在ARM中anchor $i$ 的精确坐标。$c_i$ 和$t_i$ 是anchor $i$ 是预测对象类别以及在ODM中bbox的坐标。$N_{arm}$ 和$N_{odm}$ 分别是在ARM和ODM中的正锚的数量。二元分类损失函数$\mathcal L_b$ 是二类（对象 vs. 非对象）cross-entropy/log 损失函数，而多类分类损失函数$\mathcal L_m$ 是基于多类别置信度的softmax损失函数。与Fast R-CNN类似，我们使用smooth L1 loss作为回归损失$L_r$ 。艾弗森（Iverson）括号指示器函数$\left[{l_i^*\geq 1}\right]$ 在条件为真是输出1，即$l_i^*\geq1$ (anchor不是负的)，否则输出0。因此$\left[{l_i^*\geq 1}\right]\mathcal L_r$ 表明回归损失忽略了负锚。 值得注意的是，如果$N_{arm}=0$ ，我们令$\mathcal L_b\left({p_i,\left[{l_i^*\geq 1}\right]}\right)=0$ 以及$\mathcal L_r\left({x_i,g_i^*}\right)=0$ ;相应的如果$N_{odm}=0$ ，我们令$\mathcal L_m\left({c_i,\left[{l_i^*\geq 1}\right]}\right)=0$ 以及$\mathcal L_r\left({t_i,g_i^*}\right)=0$ 。
+```
 
 **优化 Optimization**
 
