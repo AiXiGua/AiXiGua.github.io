@@ -18,7 +18,7 @@ baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "AiXiGua/AiXiGua.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+words_per_minute         : 50
 comments:
   provider               : "staticman_v2" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
   disqus:
@@ -92,7 +92,7 @@ analytics:
 author:
   name             : "Lin Hu"
   avatar           : "/assets/images/avtor.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "SCUT computer vision Master."
+  bio              : "SCUT Master."
   location         : "China GuangZhou"
   email            : "1043631313@qq.com"
   uri              :
