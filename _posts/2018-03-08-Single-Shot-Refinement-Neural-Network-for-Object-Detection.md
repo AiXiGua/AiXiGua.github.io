@@ -120,7 +120,7 @@ $$\begin{align}\mathcal L\left(\left\{ p_i \right\},\left\{ x_i \right\},\left\{
 
 **1. 运行时间**
 
-在表1的第五列中提供了RefineDet和state-of-the-art方法在NVIDIA Titan X，CUDA 8.0和cuDNN v6的机器上，batch大小为1时的推断速度。如表1所示，我们发现RefineDet在输入尺寸为320$*$320和512$*$512时，分别以24.8ms（40.3 FPS）和41.5ms（24.1 FPS）的速度处理图像。据我们所知，RefineDet是第一个在PASCAL VOC 2007上实现检测精度高于80％mAP的实时方法。与SSD，RON，DSSD和DSOD相比，RefineDet可以在特征图上关联更少的锚点框（SSD512关联24564个锚定框vs.RefineDet512关联16320个锚定框）。然而，RefineDet仍然以高效率实现高精度，主要得益于两个互连模块的设计（即两步回归），这使RefineDet能够适应对象的不同尺度和长宽比。同时，只有YOLO和SSD300$^*$比我们的RefineDet320稍快，但它们的准确度比我们的差16.6％和2.5％。总之，RefineDet在精度和速度之间实现了最佳平衡。
+在表1的第五列中提供了RefineDet和state-of-the-art方法在NVIDIA Titan X，CUDA 8.0和cuDNN v6的机器上，batch大小为1时的推断速度。如表1所示，我们发现RefineDet在输入尺寸为320\*320和512\*512时，分别以24.8ms（40.3 FPS）和41.5ms（24.1 FPS）的速度处理图像。据我们所知，RefineDet是第一个在PASCAL VOC 2007上实现检测精度高于80％mAP的实时方法。与SSD，RON，DSSD和DSOD相比，RefineDet可以在特征图上关联更少的锚点框（SSD512关联24564个锚定框vs.RefineDet512关联16320个锚定框）。然而，RefineDet仍然以高效率实现高精度，主要得益于两个互连模块的设计（即两步回归），这使RefineDet能够适应对象的不同尺度和长宽比。同时，只有YOLO和SSD300`$^*$`比我们的RefineDet320稍快，但它们的准确度比我们的差16.6％和2.5％。总之，RefineDet在精度和速度之间实现了最佳平衡。
 
 **2. 消融实验**
 
