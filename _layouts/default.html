@@ -19,7 +19,7 @@
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
         inlineMath: [['$','$'],['\\(','\\)']],
-        processEscapes: true 
+        processEscapes: true
       }
     });
 
@@ -38,6 +38,9 @@
     <style type="text/css">
       code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
     </style>
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
   </head>
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
