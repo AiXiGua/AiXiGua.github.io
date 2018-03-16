@@ -1,6 +1,6 @@
 ---
 author: linhu
-title: "Squeeze-and-Excitation Networks"
+title: "Squeeze-and-Excitation Network"
 comments: true
 classes: wide
 date: 2018-03-15 17:42:32+00:00
