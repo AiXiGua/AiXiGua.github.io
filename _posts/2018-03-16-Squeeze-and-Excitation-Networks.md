@@ -1,7 +1,9 @@
 ---
-typora-copy-images-to: assets/images
+author: linhu
 title: "Squeeze-and-Excitation Networks"
-last_modified_at: 2018-03-08T21:28:04-22:00:00
+classes: wide
+date: 2018-03-15 17:42:32+00:00
+comments: true
 categories:
   - backbone network
 tags:
