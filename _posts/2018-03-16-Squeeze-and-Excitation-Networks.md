@@ -1,11 +1,9 @@
 ---
 author: linhu
-title: "Squeeze-and-Excitation Network"
+title: "Squeeze-and-Excitation Networks"
 comments: true
 classes: wide
 date: 2018-03-15 17:42:32+00:00
-categories:
-  - backbone network
 tags:
   - Deep Learning
   - Computer Vision
