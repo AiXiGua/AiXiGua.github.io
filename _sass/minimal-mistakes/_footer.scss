@@ -83,3 +83,22 @@
     font-weight: bold;
   }
 }
+
+/* ==========================================================================
+   Custom css by linhu
+   ========================================================================== */
+   
+.gotop{
+    position: fixed;/* 固定 */
+    top:50%;/* 离左边50% */
+    left: 50%;/* 离顶部50% */
+    margin-left: 600px;/*计算页面的实际宽度除以2做一个负左边距 */
+    margin-top: -125px;/* 计算按钮组的实际高度除以2做一个负上边距*/
+}
+.gotop li a{display: block;width: 30px;height: 30px;border-bottom: 1px solid #000;background-color: #333;color: #fff;line-height: 15px;padding: 10px;text-align: center;}
+.gotop li a.user{border: 0;}
+.gotop li a i{line-height: 30px;font-size: 20px;}
+.gotop li a em{display: none;}
+.gotop li a:hover{background-color: #3398cc;color: #fff;}
+.gotop li a:hover i{display: none;}
+.gotop li a:hover em{display: block;font-style: normal;}
