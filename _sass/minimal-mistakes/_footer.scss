@@ -90,8 +90,8 @@
 
 p#back-to-top{  
     position:fixed;  
-    bottom:18px;  
-    right:12px;  
+    top: 80%;
+    left: 85%;
 }  
 p#back-to-top a{  
     text-align:center;  
@@ -99,7 +99,6 @@ p#back-to-top a{
     color:#000;  
     display:block;  
     width:30px;  
-    /*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/  
     -moz-transition:color1s;  
     -webkit-transition:color1s;  
     -o-transition:color1s;  
@@ -116,7 +115,6 @@ p#back-to-top a span{
     height:30px;  
     width:30px;  
     margin-bottom:5px;  
-    /*使用CSS3中的transition属性给<span>标签背景颜色添加渐变效果*/  
     -moz-transition:background1s;  
     -webkit-transition:background1s;  
     -o-transition:background1s;  
